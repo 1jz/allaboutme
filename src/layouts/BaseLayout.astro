@@ -1,0 +1,61 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Where things sometimes happen" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	* {
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	:root {
+		--accent: 96, 154, 96;
+		--accent-light: 176, 229, 176;
+		--accent-dark: 21, 110, 81;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent-dark)),
+			rgb(var(--accent)) 30%,
+			rgb(var(--accent-light)) 60%
+		);
+	}
+
+	html {
+		font-family: Georgia, serif;
+		background: #051a13;
+	}
+
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+</style>

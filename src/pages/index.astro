@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Shader from '../components/shader.astro'
+---
+<BaseLayout title="Phil.">
+	<section class="pagefill">
+		<div class="divide">
+			<div class="shader">
+				<Shader></Shader>
+			</div>
+		</div>
+		<div class="divide">
+			<div class="bio">
+				<div class="profile">
+					<img src="/512.jpg" alt="me">
+				</div>
+				<h1>Philip Golovin</h1>
+				<p>Software Engineer</p>
+				<div class="links">
+					<a href="https://github.com/1jz">github</a>
+					<p>.</p>
+					<a href="https://github.com/1jz">linkedin</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<main>
+		<section class="projects software">
+			<h1>Software</h1>
+			<div class="gallery">
+				<div class="box"></div>
+				<div class="box"></div>
+				<div class="box spangrid"></div>
+				<div class="box"></div>
+				<div class="box"></div>
+			</div>
+		</section>
+		<section class="projects creative">
+			<h1>Creative</h1>
+			<div class="gallery">
+				<div class="box"></div>
+				<div class="box"></div>
+				<div class="box spangrid"></div>
+			</div>
+		</section>
+		<section class="projects creative">
+			<h1>Fun</h1>
+			<div class="gallery">
+				<div class="box spangrid"></div>
+				<div class="box spangrid"></div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		color: white;
+	}
+
+	.pagefill {
+		height: 100vh;
+		display: flex;
+		flex-direction: row;
+		color: white;
+	}
+
+	.divide {
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.shader {
+		width:512px;
+		height:512px;
+	}
+
+	.links {
+		display:flex;
+	}
+
+	.bio {
+		width: 100%;
+		height: 512px;
+		font-size: 2rem;
+	}
+
+	.bio h1 {
+		font-weight: normal;
+	}
+
+	.bio p {
+		color: rgb(var(--accent-light));
+	}
+
+	.bio .links {
+		font-size: 0.5em;
+		flex-direction: row;
+	}
+
+	.bio .links > *:not(:first-child) {
+		margin-left: 10px; /* Consistent spacing between items */
+	}
+
+	.bio a {
+		color: rgb(var(--accent));
+	}
+
+	.box {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: rgb(var(--accent));
+		border-radius: 4px;
+	}
+
+	.projects {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 40px;
+		gap: 20px;
+	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: 1fr 1fr; /* Two columns, each taking half of the width */
+		grid-template-rows: auto auto; /* Two rows, size according to content */
+		grid-gap: 10px; /* Adjust the gap between items as needed */
+		align-items: stretch;
+	}
+
+	.spangrid {
+		grid-column: 1 / span 2;
+	}
+
+	.profile {
+		width: 256px;
+		height: 256px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 2px solid white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgb(var(--accent));
+	}
+
+	.profile img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>
