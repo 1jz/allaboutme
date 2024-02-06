@@ -3,5 +3,8 @@
   "compilerOptions": {
     "allowJs": true,
     "sourceMap": true,
-  }
+  },
+  "exclude": [
+    "src/components/shader.astro",
+  ]
 }

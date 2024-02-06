@@ -4,12 +4,7 @@ import Shader from '../components/shader.astro'
 ---
 <BaseLayout title="Phil.">
 	<section class="pagefill">
-		<div class="divide">
-			<div class="shader">
-				<Shader></Shader>
-			</div>
-		</div>
-		<div class="divide">
+		<div class="me">
 			<div class="bio">
 				<div class="profile">
 					<img src="/512.jpg" alt="me">
@@ -19,8 +14,13 @@ import Shader from '../components/shader.astro'
 				<div class="links">
 					<a href="https://github.com/1jz">github</a>
 					<p>.</p>
-					<a href="https://github.com/1jz">linkedin</a>
+					<a href="https://www.linkedin.com/in/philipgolovin/">linkedin</a>
 				</div>
+			</div>
+		</div>
+		<div class="shadercont">
+			<div class="shader">
+				<Shader></Shader>
 			</div>
 		</div>
 	</section>
@@ -28,26 +28,26 @@ import Shader from '../components/shader.astro'
 		<section class="projects software">
 			<h1>Software</h1>
 			<div class="gallery">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box spangrid"></div>
-				<div class="box"></div>
-				<div class="box"></div>
+				<div class="item"></div>
+				<div class="item"></div>
+				<div class="item spangrid"></div>
+				<div class="item"></div>
+				<div class="item"></div>
 			</div>
 		</section>
 		<section class="projects creative">
 			<h1>Creative</h1>
 			<div class="gallery">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box spangrid"></div>
+				<div class="item"></div>
+				<div class="item"></div>
+				<div class="item spangrid"></div>
 			</div>
 		</section>
 		<section class="projects creative">
 			<h1>Fun</h1>
 			<div class="gallery">
-				<div class="box spangrid"></div>
-				<div class="box spangrid"></div>
+				<div class="item spangrid"></div>
+				<div class="item spangrid"></div>
 			</div>
 		</section>
 	</main>
@@ -57,18 +57,19 @@ import Shader from '../components/shader.astro'
 	main {
 		margin: auto;
 		padding: 1rem;
-		width: 800px;
+		max-width: 800px;
 		color: white;
 	}
 
 	.pagefill {
 		height: 100vh;
 		display: flex;
-		flex-direction: row;
+		flex-direction: row-reverse;
 		color: white;
+		overflow: hidden;
 	}
 
-	.divide {
+	.shadercont, .me {
 		width: 50%;
 		display: flex;
 		justify-content: center;
@@ -78,6 +79,9 @@ import Shader from '../components/shader.astro'
 	.shader {
 		width:512px;
 		height:512px;
+		justify-content: center;
+		display: flex;
+		overflow: hidden;
 	}
 
 	.links {
@@ -111,7 +115,7 @@ import Shader from '../components/shader.astro'
 		color: rgb(var(--accent));
 	}
 
-	.box {
+	.item {
 		width: 100%;
 		aspect-ratio: 16 / 9;
 		background-color: rgb(var(--accent));
@@ -153,5 +157,43 @@ import Shader from '../components/shader.astro'
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+
+	@media screen and (max-width: 1280px) {
+		.pagefill {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		.bio {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.me {
+			width: 100%;
+			scale: 0.8;
+		}
+
+		.shader {
+			width: 800px;
+		}
+		.shadercont {
+			width: 100%;
+			height: 100px;
+			overflow: hidden;
+		}
+	}
+	@media screen and (max-width: 800px) {
+		.item {
+			grid-column: 1 / span 2;
+		}
+
+		.profile {
+			scale: 0.8;
+		}
 	}
 </style>
