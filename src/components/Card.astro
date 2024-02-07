@@ -2,7 +2,7 @@
 interface Props {
 	title: string;
 	body: string;
-	href: string;
+	href?: string;
 	span?: boolean;
 	animate?: boolean;
 	file: string;
@@ -12,14 +12,7 @@ const { href, title, body, span = false, file, animate = false} = Astro.props as
 ---
 <div id={file} class={`link-card ${span ? 'spangrid' : ''}`}>
 	<img class="card-img" src={`/img/${file}.webp`}>
-	<a href={href}>
-		<h2>
-			{title}
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
+	{href ? <a class="hl" href={href}><h2>{title}</h2><p>{body}</p></a> : <div class="hl"><h2>{title}</h2><p>{body}</p></div>}
 </div>
 
 <script define:vars={{ file, animate }}>
@@ -48,7 +41,7 @@ const { href, title, body, span = false, file, animate = false} = Astro.props as
 		aspect-ratio: 16 / 9;
 	}
 
-	.link-card > a {
+	.link-card > .hl {
 		position: absolute;
 		background: rgb(var(--bg-dark));
 		background-image: none;
@@ -91,7 +84,7 @@ const { href, title, body, span = false, file, animate = false} = Astro.props as
 		color: rgb(var(--accent-light));
 	}
 
-	.link-card:is(:hover, :focus-within) a {
+	.link-card:is(:hover, :focus-within) .hl {
 		background-position: 0;
 		opacity: 0.75;
 	}
