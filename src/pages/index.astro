@@ -1,13 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Shader from '../components/shader.astro'
+import Navbar from '../components/navbar.astro'
+import Card from '../components/Card.astro'
 ---
 <BaseLayout title="Phil.">
+	<Navbar></Navbar>
 	<section class="pagefill">
 		<div class="me">
 			<div class="bio">
 				<div class="profile">
-					<img src="/512.jpg" alt="me">
+					<img src="/img/512.jpg" alt="me">
 				</div>
 				<h1>Philip Golovin</h1>
 				<p>Software Engineer</p>
@@ -25,29 +28,79 @@ import Shader from '../components/shader.astro'
 		</div>
 	</section>
 	<main>
-		<section class="projects software">
+		<section class="projects">
 			<h1>Software</h1>
 			<div class="gallery">
-				<div class="item"></div>
-				<div class="item"></div>
-				<div class="item spangrid"></div>
-				<div class="item"></div>
-				<div class="item"></div>
+				<Card
+					href="https://buffet.moe/"
+					title="Buffet.moe"
+					body="Fully serverless file hosting service using rust. Currently in alpha."
+					file="buffet"
+				/>
+				<Card
+					href="https://github.com/1jz/stable-diffusion-scaler"
+					title="SD Scaler"
+					body="Image scaling using stable diffusion with tiling for larger images"
+					file="sdscaler"
+					animate={true}
+				/>
 			</div>
 		</section>
-		<section class="projects creative">
+		<section class="projects">
 			<h1>Creative</h1>
 			<div class="gallery">
-				<div class="item"></div>
-				<div class="item"></div>
-				<div class="item spangrid"></div>
+				<Card
+					href="https://github.com/1jz/pixsort"
+					title="pixsort"
+					body="CLI for sorting pixels in videos and images"
+					span={true}
+					animate={true}
+					file="pixsort"
+				/>
+				<Card
+					href="javascript:void(0);"
+					title="PROJECT MAGE"
+					body="WIP Isometric roguelite utilizing 3D Pixel Art shader"
+					file="mage"
+					animate={true}
+				/>
+				<Card
+					href="javascript:void(0);"
+					title="Godot Source Movement"
+					body="Recreation of source engine movement in Godot"
+					file="godot"
+					animate={true}
+				/>
 			</div>
 		</section>
-		<section class="projects creative">
+		<section class="projects">
 			<h1>Fun</h1>
 			<div class="gallery">
-				<div class="item spangrid"></div>
-				<div class="item spangrid"></div>
+				<Card
+					href="https://github.com/runelite/runelite"
+					title="Runelite"
+					body="Old School RuneScape client, contributor and plugin developer"
+					file="runelite"
+					animate={true}
+				/>
+				<Card
+					href="javascript:void(0);"
+					title="TrackMania OpenCV Bot"
+					body="Using computer vision to navigate trackmania maps"
+					file="tmbot"
+				/>
+				<Card
+					href="https://github.com/1jz/csgo-go-bhop"
+					title="CS:GO Go bhop"
+					body="POC Golang Win32 bunnyhop cheat for csgo"
+					file="csgo"
+				/>
+				<Card
+					href="https://github.com/1jz/osu-relax"
+					title="osu! relax"
+					body="Using Win32 to click to the beat with robot precision"
+					file="osu"
+				/>
 			</div>
 		</section>
 	</main>
@@ -58,14 +111,13 @@ import Shader from '../components/shader.astro'
 		margin: auto;
 		padding: 1rem;
 		max-width: 800px;
-		color: white;
+		color: var(--text-primary);
 	}
 
 	.pagefill {
-		height: 100vh;
+		height: calc(100vh - var(--navbar-size));
 		display: flex;
 		flex-direction: row-reverse;
-		color: white;
 		overflow: hidden;
 	}
 
@@ -95,11 +147,12 @@ import Shader from '../components/shader.astro'
 	}
 
 	.bio h1 {
-		font-weight: normal;
+		color: var(--text-primary);
 	}
 
 	.bio p {
 		color: rgb(var(--accent-light));
+		font-family: 'Sen', 'Helvetica', sans-serif;
 	}
 
 	.bio .links {
@@ -108,37 +161,27 @@ import Shader from '../components/shader.astro'
 	}
 
 	.bio .links > *:not(:first-child) {
-		margin-left: 10px; /* Consistent spacing between items */
+		margin-left: 10px;
 	}
 
 	.bio a {
 		color: rgb(var(--accent));
-	}
-
-	.item {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		background-color: rgb(var(--accent));
-		border-radius: 4px;
+		font-family: 'Source Code Pro', 'Courier New', monospace;
 	}
 
 	.projects {
 		display: flex;
 		flex-direction: column;
-		margin-bottom: 40px;
-		gap: 20px;
+		margin-bottom: 1rem;
+		gap: 1rem;
 	}
 
 	.gallery {
 		display: grid;
-		grid-template-columns: 1fr 1fr; /* Two columns, each taking half of the width */
-		grid-template-rows: auto auto; /* Two rows, size according to content */
-		grid-gap: 10px; /* Adjust the gap between items as needed */
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto;
+		grid-gap: 1rem;
 		align-items: stretch;
-	}
-
-	.spangrid {
-		grid-column: 1 / span 2;
 	}
 
 	.profile {
@@ -181,13 +224,15 @@ import Shader from '../components/shader.astro'
 		.shader {
 			width: 800px;
 		}
+
 		.shadercont {
 			width: 100%;
 			height: 100px;
 			overflow: hidden;
 		}
 	}
-	@media screen and (max-width: 800px) {
+
+	@media screen and (max-width: 600px) {
 		.item {
 			grid-column: 1 / span 2;
 		}

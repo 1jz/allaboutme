@@ -1,0 +1,115 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+	span?: boolean;
+	animate?: boolean;
+	file: string;
+}
+
+const { href, title, body, span = false, file, animate = false} = Astro.props as Props;
+---
+<div id={file} class={`link-card ${span ? 'spangrid' : ''}`}>
+	<img class="card-img" src={`/img/${file}.webp`}>
+	<a href={href}>
+		<h2>
+			{title}
+		</h2>
+		<p>
+			{body}
+		</p>
+	</a>
+</div>
+
+<script define:vars={{ file, animate }}>
+	if (animate) {
+		let card = document.getElementById(file);
+		let img = card.firstElementChild;
+		card.addEventListener('mouseenter', () => {img.src = `/img/${file}.anim.webp`;});
+		card.addEventListener('mouseleave', () => {img.src = `/img/${file}.webp`;});
+	}
+</script>
+
+<style>
+	.link-card {
+		position: relative;
+		list-style: none;
+		display: flex;
+		padding: 1px;
+		background-color: rgb(var(--bg-dark));
+		background-image: none;
+		background-size: 400%;
+		border-radius: 8px;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+		width: 100%;
+		aspect-ratio: 16 / 9;
+	}
+
+	.link-card > a {
+		position: absolute;
+		background: rgb(var(--bg-dark));
+		background-image: none;
+		background-size: 400%;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		border-radius: 8px;
+		width: calc(100% - 2px);
+		height: calc(100% - 2px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0 1rem;
+		opacity: 0.85;
+		transition: opacity 0.25s ease;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		font-family: 'Sen', 'Helvetica', sans-serif;
+	}
+
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+		text-justify: inter-word;
+		text-align: center;
+		font-family: 'Source Code Pro', 'Courier New', monospace;
+	}
+
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+
+	.link-card:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent-light));
+	}
+
+	.link-card:is(:hover, :focus-within) a {
+		background-position: 0;
+		opacity: 0.9;
+	}
+	
+	.spangrid {
+		grid-column: 1 / span 2;
+	}
+
+	.card-img {
+		border-radius: 8px;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
+	@media screen and (max-width: 600px) {
+		.link-card {
+			grid-column: 1 / span 2;
+		}
+	}
+</style>

@@ -21,6 +21,8 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
+  	@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;600&family=Source+Code+Pro&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 	* {
 		min-width: 0;
 		margin: 0;
@@ -31,6 +33,11 @@ const { title } = Astro.props;
 	}
 
 	:root {
+		--bg: 5, 26, 19;
+		--bg-dark: 4, 20, 15;
+
+		--text-primary: white;
+
 		--accent: 96, 154, 96;
 		--accent-light: 176, 229, 176;
 		--accent-dark: 21, 110, 81;
@@ -40,22 +47,17 @@ const { title } = Astro.props;
 			rgb(var(--accent)) 30%,
 			rgb(var(--accent-light)) 60%
 		);
+		
+		--navbar-size: 60px;
+		--main-width: 800px;
 	}
 
 	html {
-		font-family: Georgia, serif;
-		background: #051a13;
+		font-family: 'Tinos', 'Georgia', 'Times', serif;
+		background: rgb(var(--bg));
 	}
 
 	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+		font-family: 'Source Code Pro', 'Courier New', monospace;
 	}
 </style>

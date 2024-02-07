@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Shader from '../components/shader.astro'
+import Navbar from '../components/navbar.astro'
+import Card from '../components/Card.astro'
+---
+<BaseLayout title="Phil.">
+	<Navbar></Navbar>
+	<section class="pagefill">
+		<Shader></Shader>
+        <h1>tbd</h1>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		height: calc(100vh - var(--navbar-size));
+		display: flex;
+		flex-direction: row-reverse;
+		overflow: hidden;
+        align-items: center;
+        justify-content: center;
+	}
+
+    h1 {
+        position: absolute;
+        color: rgb(var(--bg-dark));
+        font-family: 'Sen', 'Helvetica', sans-serif;
+        font-size: 4rem;
+    }
+</style>

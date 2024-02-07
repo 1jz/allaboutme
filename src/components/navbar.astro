@@ -1,0 +1,70 @@
+---
+---
+<nav class="navbar">
+    <a href="/" class="logo">phil.rs</a>
+    <input id="navbar-toggle" type="checkbox" class="hamburger-checkbox" />
+    <label for="navbar-toggle" class="hamburger">&#9776;</label>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </ul>
+</nav>
+
+<style>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(var(--bg-dark));
+        color: var(--text-primary);
+        height: var(--navbar-size);
+        padding: 0 1rem;
+		font-family: 'Source Code Pro', 'Courier New', monospace;
+    }
+
+    .hamburger-checkbox {
+        z-index: -1;
+        display: none;
+    }
+
+    .hamburger {
+        display: none;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        color: var(--text-primary);
+        text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+        .hamburger {
+            display: block;
+            font-size: 1.25rem;
+            line-height: 32px;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: var(--navbar-size);
+            left: 0;
+            right: 0;
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+            background-color: rgb(var(--bg-dark));
+            padding: 1rem;
+        }
+
+        .hamburger-checkbox:checked ~ .nav-links {
+            display:flex;
+        }
+    }
+</style>
