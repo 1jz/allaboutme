@@ -2,16 +2,17 @@
 interface Props {
 	title: string;
 	body: string;
+	alt: string;
 	href?: string;
 	span?: boolean;
 	animate?: boolean;
 	file: string;
 }
 
-const { href, title, body, span = false, file, animate = false} = Astro.props as Props;
+const { alt, href, title, body, span = false, file, animate = false} = Astro.props as Props;
 ---
 <div id={file} class={`link-card ${span ? 'spangrid' : ''}`}>
-	<img class="card-img" src={`/img/${file}.webp`}>
+	<img alt={alt} class="card-img" src={`/img/${file}.webp`}>
 	{href ? <a class="hl" href={href}><h2>{title}</h2><p>{body}</p></a> : <div class="hl"><h2>{title}</h2><p>{body}</p></div>}
 </div>
 
